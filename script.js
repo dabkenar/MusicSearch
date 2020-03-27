@@ -22,6 +22,9 @@ var resultView = new Vue({
       .then(response => {
         console.log(response.data);
         this.numResults = response.data.resultCount;
+        if (this.numResults === 0) {
+          alert("No Artists Found");
+        }
       });
     },
     parse_query () {
