@@ -56,10 +56,10 @@
                </h4>
             </div>
 
-            <div>
-               <div class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
+            <template v-for="result in results">
+               <div id="{{result.artistName}}" class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
                   <div class="col-sm-4" style='max-width:200px;margin-right: 30px'>
-                     <img style='width: 120%; display: inline; ' v-bind:src="artist1">
+                     <img style='width: 120%; display: inline; ' :src="get_img_url(result)">
                   </div>
 
                   <div class="col-sm-6" style='max-height: 250px;'>
@@ -69,24 +69,25 @@
                      </ul>
                      <div class="tab-content">
                         <span>
-                           <b>Artist Name:</b>
-                        </span>
+                           <b>Artist Name: </b>{{result.artistName}}
+                        </span><br/>
                         <span>
-                           <b>Collection Name:</b>
-                        </span>
+                           <b>Album Name: </b>{{result.collectionName}}
+                        </span><br/>
                         <span>
-                           <b>Price:</b>$
-                        </span>
+                           <b>Price: </b>${{result.collectionPrice}}
+                        </span><br/>
                         <span>
-                           <b>Type:</b>
-                        </span>
+                           <b>Type: </b>{{result.kind}}
+                        </span><br/>
                         <span>
-                           <b>Preview:</b>
+                           <b>Preview: </b>
+                           <a v-bind:href="get_preview_url(result)">link</a>
                         </span>
                      </div>
                   </div>
                </div>
-            </div>
+            </template>
          </div>
       </div>
     <script src="script.js"></script>
