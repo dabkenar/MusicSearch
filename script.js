@@ -6,40 +6,9 @@ new Vue({
   }
 })
 
-// Vue.component('search-result', {
-//   template:'\
-//     <div class = "col-lg-6 col-md-6 col-sm-6" style="margin-bottom: 50px; display: inline; height: 250px">\
-//       <div class="col-sm-4" style="max-width:200px;margin-right: 30px">\
-//           <img style="width: 120%; display: inline;" v-bind:src="{{artworkUrl60}}">\
-//       </div>\
-//       <div class="col-sm-6" style=" max-height: 250px;">\
-//           <ul class="nav nav-tabs">\
-//             <li class="active"><a data-toggle="tab" >Description</a></li>\
-//             <li><a data-toggle="tab">Artist Info.</a></li>\
-//           </ul>\
-//           <div class="tab-content">\
-//             <span>\
-//                 <b>Artist Name: </b>{{artistName}}\
-//             </span><br/>\
-//             <span>\
-//                 <b>Collection Name: </b>{{collectionName}}\
-//             </span><br/>\
-//             <span>\
-//                 <b>Price: </b>${{collectionPrice}}\
-//             </span><br/>\
-//             <span>\
-//                 <b>Type: </b>{{primaryGenreName}}\
-//             </span><br/>\
-//             <span>\
-//                 <b>Preview: </b>\
-//                 <a href="{{previewUrl}}">link</a>\
-//             </span>\
-//           </div>\
-//       </div>\
-//     </div>\
-//   ',
-//   props:['result']
-// })
+Vue.component('search-result', {
+  template: '<p>Hello World</p>'
+})
 
 var resultView = new Vue({
   el: '#app',
