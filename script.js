@@ -6,10 +6,6 @@ new Vue({
   }
 })
 
-Vue.component('search-result', {
-  template: '<p>Hello World</p>'
-})
-
 var resultView = new Vue({
   el: '#app',
   data: {
@@ -19,6 +15,7 @@ var resultView = new Vue({
     queryWords: [],
     queryParsed: '',
     results: [],
+    tab1: true,
   },
   methods: {
     request_api () {
@@ -27,7 +24,7 @@ var resultView = new Vue({
       .then(response => {
         console.log(response.data);
         this.numResults = response.data.resultCount;
-        
+        this.results = [];
         for (var i in response.data.results) {
           this.results.push(response.data.results[i]);
         }
@@ -59,6 +56,47 @@ var resultView = new Vue({
     },
     get_preview_url (result) {
       return result.previewUrl;
+    },
+    get_artist_info (result, type) {
+      let returnVal = '';
+      switch(type) {
+        case 1:
+          returnVal = result.artistName;
+          break;
+        case 2:
+          returnVal = result.collectionName;
+          break;
+        case 3:
+          returnVal = result.collectionPrice;
+          break;
+        case 4:
+          returnVal = result.kind;
+          break;
+        case 5:
+          returnVal = result.previewUrl;
+          break;
+        case 6:
+          returnVal = result.artworkUrl100;
+          break;
+        case 7:
+          returnVal = result.trackId;
+          break;
+      }
+      if (returnVal === '') {
+        returnVal = 'No information provided';
+      }
+      return returnVal;
+    }
+  }
+})
+
+Vue.component('toggle-tabs', {
+  data: {
+    tab1: true,
+  },
+  methods: {
+    switch_tab () {
+      this.tab1 = !this.tab1;
     }
   }
 })
