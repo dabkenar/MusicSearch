@@ -24,7 +24,7 @@
       white-space: nowrap;
       background-color:#ccc;
       padding:2px;
-      }
+      }ƒf
       /*img {
       height: 200px;
       }*/
@@ -48,7 +48,10 @@
 
             <div class = "col-lg-12 col-md-12 col-sm-12">
                <div>
-                  <button class = "btn btn-success" style="margin:2px;">ALL</button>
+                  <genre-filter
+                     v-for="item in filters"
+                     v-bind:filter="item"
+                  ></genre-filter>
                </div>
                <b>Search Result (Total {{numResults}} found)</b>
                <h4>
@@ -56,43 +59,13 @@
                </h4>
             </div>
 
-            <template v-for="result in results">
-               <div id="search-result" class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
-                  <div class="col-sm-4" style='max-width:200px;margin-right: 30px'>
-                     <img style='width: 120%; display: inline; ' :src="get_artist_info(result, 6)">
-                  </div>
-
-                  <toggle-tabs>
-                     <div class="col-sm-6" style='max-height: 250px;'>
-                        <ul class="nav nav-tabs">
-                           <li href="#tab1-content" class="active"><a data-toggle="tab" v-on:click="switch_tab()">Description</a></li>
-                           <li><a href="#tab2-content" data-toggle="tab" v-on:click="switch_tab()">Artist Info.</a></li>
-                        </ul>
-                        <div v-if="tab1" id="tab1-content">
-                           <span>
-                              <b>Artist Name: </b>{{get_artist_info(result, 1)}}
-                           </span><br/>
-                           <span>
-                              <b>Album Name: </b>{{get_artist_info(result, 2)}}
-                           </span><br/>
-                           <span>
-                              <b>Price: </b>${{get_artist_info(result, 3)}}
-                           </span><br/>
-                           <span>
-                              <b>Type: </b>{{get_artist_info(result, 4)}}
-                           </span><br/>
-                           <span>
-                              <b>Preview: </b>
-                              <a v-bind:href="get_artist_info(result, 5)">link</a>
-                           </span>
-                        </div>
-                        <div v-if="!tab1" id="tab2-content">
-                           <span>{{get_artist_info(result, 7)}}</span>
-                        </div>
-                     </div>
-                  </toggle-tabs>
-               </div>
-            </template>
+            <ul style="list-style-type: none;">
+               <search-result
+                  v-for="item in results"
+                  v-bind:result="item"
+                  v-bind:tab1="tab1"
+               ></search-result>
+            </ul>
          </div>
       </div>
     <script src="script.js"></script>
